@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import fire from './fire';
-import './App.css';
+import './App2.css';
 import Login from './Login';
 import Hero from './Hero';
 
@@ -11,10 +11,13 @@ function App() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [hasAccount, setHasAccount] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [showAuth, setShowAuth] = useState(true);
 
   const clearInputs = () => {
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
   }
 
   const clearErrors = () => {
@@ -28,7 +31,7 @@ function App() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(err => {
-        switch(err.code){
+        switch (err.code) {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
@@ -38,7 +41,7 @@ function App() {
             setPasswordError(err.message);
             break;
           default:
-          
+
 
         }
       });
@@ -50,7 +53,7 @@ function App() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(err => {
-        switch(err.code){
+        switch (err.code) {
           case "auth/email-already-in-use":
           case "auth/invalid-email":
             setEmailError(err.message);
@@ -63,6 +66,16 @@ function App() {
       });
   }
 
+  const handleSubmit = () => {
+    // perform all neccassary validations
+    if (password !== confirmPassword) {
+      alert("Parolele nu se potrivesc!");
+    } else {
+      // make API call
+      handleSignup();
+    }
+  }
+
   const handleLogout = () => {
     fire.auth().signOut();
   }
@@ -73,7 +86,7 @@ function App() {
         clearInputs();
         setUser(user);
       } else {
-      setUser("");
+        setUser("");
       }
     })
   }
@@ -84,12 +97,17 @@ function App() {
   // aici trebuia sa fie si [] la useEffect?
 
   return (
-    <div className="App">
-      {user ? (
-        <Hero handleLogout={handleLogout}/>
-      ) : (
-        <Login 
-          email={email}
+    <div className="App"> 
+      {user ? (<
+        Hero handleLogout={handleLogout}
+      />
+      ) : ( <>
+        <Hero handleLogout={handleLogout}
+        showAuth={showAuth}
+        setShowAuth={setShowAuth}
+        user={user}
+        />  
+        <Login email={email}
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
@@ -99,12 +117,16 @@ function App() {
           setHasAccount={setHasAccount}
           emailError={emailError}
           passwordError={passwordError}
+          confirmPassword={confirmPassword}
+          setConfirmPassword={setConfirmPassword}
+          handleSubmit={handleSubmit}
+          showAuth={showAuth}
+          setShowAuth={setShowAuth}
         />
-      )}
-      
-      
-    </div>
-  );
+        </>
+      )} 
+      </div>
+    );
 }
 
 export default App;

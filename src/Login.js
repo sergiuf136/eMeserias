@@ -2,76 +2,70 @@ import React from 'react';
 
 const Login = (props) => {
 
-    const { email,
+    const {
+        email,
         setEmail,
         password,
         setPassword,
         handleLogin,
-        handleSignup,
+        // handleSignup,
         hasAccount,
         setHasAccount,
         emailError,
-        passwordError } = props;
+        passwordError,
+        confirmPassword,
+        setConfirmPassword,
+        handleSubmit,
+        showAuth,
+        setShowAuth
+    } = props;
 
-    return (
-        <section className="login">
-            <div className="loginContainer">
-                <label>
-                    Email
-                </label>
-                <input
-                    type="text"
-                    autoFocus
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <p className="errorMsg">{emailError}</p>
-                <label>
-                    Password
-                </label>
-                <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <p className="errorMsg">{passwordError}</p>
+    if (showAuth)
+        return (
+            //<section className="login">
+            <div className="loginContainer" >
+                <span id='close' onClick={() => setShowAuth(!showAuth)} >închide fereastra</span>
+                <label> Email </label>
+                <input type="text"
+                    autoFocus required value={email}
+                    onChange={(e) => setEmail(e.target.value)} />
+                <p className="errorMsg"> {emailError} </p>
+                <label> Parolă </label>
+                <input type="password" required value={password}
+                    onChange={(e) => setPassword(e.target.value)} />
+                <p className="errorMsg" > {passwordError} </p>
                 {!hasAccount &&
                     <>
-                        <label>
-                            Confirm Password
-                    </label>
-                        <input
-                            type="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                        <label>Confirmă parola </label>
+                        <input type="password"
+                            required value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
-                        <p className="errorMsg">{passwordError}</p>
-                    </>}
+                        <p className="errorMsg"> {passwordError}</p>
+                    </>
+                }
                 <div className="btnContainer">
-
-                    {hasAccount ? (
-                        <>
-                            <button onClick={handleLogin}>
-                                Sign in</button>
-                            <p>Don't have an account?<span onClick={() => setHasAccount(!hasAccount)}>Sign up</span></p>
-                        </>
-                    ) : (
+                    {hasAccount ?
+                        (
                             <>
-                                <button onClick={handleSignup}>
-                                    Sign up
-                            </button>
-                                <p>Have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign in!</span></p>
+                                <button onClick={handleLogin} > Autentificare </button>
+                                <p > Nu ai cont?<span onClick={() => setHasAccount(!hasAccount)}>Fă-ți cont!</span></p>
+                            </>
+                        ) : (
+                            <>
+                                <button onClick={handleSubmit} > Creare cont </button>
+                                <p > Ai cont? <span onClick={() => setHasAccount(!hasAccount)} > Autentifică-te! </span></p>
                             </>
                         )}
                 </div>
 
             </div>
-        </section>
-    )
+            //</section>
+        )
+    else {
+        return null;
+    }
 }
 
 export default Login;
