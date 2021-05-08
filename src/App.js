@@ -3,6 +3,8 @@ import fire from './fire';
 import './App2.css';
 import Login from './Login';
 import Hero from './Hero';
+import Feed from './Feed';
+import Account from './Account';
 
 function App() {
   const [user, setUser] = useState('');
@@ -13,6 +15,8 @@ function App() {
   const [hasAccount, setHasAccount] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
   const [showAuth, setShowAuth] = useState(true);
+  const [name, setName] = useState('');
+  const [job, setJob] = useState('');
 
   const clearInputs = () => {
     setEmail('');
@@ -52,6 +56,23 @@ function App() {
     fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(
+        (user) => {
+          console.log(user.user.uid);
+          fire.database().ref('users/' + user.user.uid).set({
+            username: name,
+            email: user.user.email,
+            job: job
+          })
+
+          console.log("aici");
+
+
+        }
+
+        
+        /**/
+      )
       .catch(err => {
         switch (err.code) {
           case "auth/email-already-in-use":
@@ -64,6 +85,8 @@ function App() {
           default:
         }
       });
+    
+    
   }
 
   const handleSubmit = () => {
@@ -84,6 +107,7 @@ function App() {
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         clearInputs();
+
         setUser(user);
       } else {
         setUser("");
@@ -94,7 +118,9 @@ function App() {
   useEffect(() => {
     authListener();
   });
-  // aici trebuia sa fie si [] la useEffect?
+
+  
+  //console.log(user);
 
   return (
     <div className="App"> 
@@ -122,9 +148,15 @@ function App() {
           handleSubmit={handleSubmit}
           showAuth={showAuth}
           setShowAuth={setShowAuth}
+          name={name}
+          setName={setName}
+          job={job}
+          setJob={setJob}
         />
         </>
       )} 
+        <Feed user={user}/>
+        <Account user={user}/>
       </div>
     );
 }
