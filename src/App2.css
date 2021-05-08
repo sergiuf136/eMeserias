@@ -34,6 +34,7 @@ button {
 }
 
 .loginContainer {
+    z-index: 1;
     position: fixed;
     top: 70px;
     right: 10px;
@@ -83,6 +84,8 @@ button {
     line-height: 1;
 }
 
+
+
 .loginContainer input {
     width: 100%;
     border: none;
@@ -93,6 +96,23 @@ button {
     color: #fff;
     letter-spacing: 1px;
 }
+
+.loginContainer input[type="radio"] {
+    vertical-align: baseline;
+    width: 30px;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    letter-spacing: 1px;
+}
+
+.loginContainer input[type="radio"]:checked+label {
+    background-color: #bbb;
+}
+
+
 
 .loginContainer .btnContainer {
     width: 100%;
@@ -174,4 +194,78 @@ button {
 
 .hero nav button:hover {
     background-color: #007e41;
+}
+
+.accountContainer {
+    position: fixed;
+    top: 78px;
+    right: 0;
+    padding: 60px;
+    margin: auto;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+
+.feed {
+    overflow-y: scroll;
+    position: fixed;
+    top: 78px;
+    padding: 60px;
+    margin: auto;
+    max-width: 70%;
+    min-height: 600px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: radial-gradient( ellipse at right top, rgb(39, 38, 54) 0%, rgb(159, 226, 177) 48%, rgb(255, 255, 255) 100%);
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+
+.feed .phantomElement{
+    position: relative;
+    justify-self: center;
+    border-radius: 30px;
+    right: 30px;
+    top: 200px;
+    padding: 70px;
+    margin: 300px;
+    width: 80%;
+    max-width: 90%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(143, 192, 173);
+
+}
+
+.feed .feedContainer {
+    position: relative;
+    justify-self: center;
+    border-radius: 25px;
+    top: 80px;
+    padding: 60px;
+    margin: 10px;
+    width: 80%;
+    max-width: 90%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(143, 192, 173);
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+
+.feed .feedContainer label {
+    color: rgb(95, 0, 184);
+    margin: 14px 0;
+    display: block;
+    font-size: 22px;
+    line-height: 1;
 }

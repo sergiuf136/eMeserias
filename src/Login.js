@@ -17,7 +17,10 @@ const Login = (props) => {
         setConfirmPassword,
         handleSubmit,
         showAuth,
-        setShowAuth
+        setShowAuth,
+        name,
+        setName,
+        setJob,
     } = props;
 
     if (showAuth)
@@ -25,6 +28,29 @@ const Login = (props) => {
             //<section className="login">
             <div className="loginContainer" >
                 <span id='close' onClick={() => setShowAuth(!showAuth)} >închide fereastra</span>
+                {!hasAccount &&
+                    <>
+                        <label>Vrei să fii...</label>
+                        <label>
+                            <input type="radio" name="tipCont" value="meserias"
+                                onClick={(e) => setJob(e.target.value)}/>
+                                <span>Meseriaș</span>
+
+                            <input type="radio" name="tipCont" value="client"
+                                onClick={(e) => setJob(e.target.value)}/>
+                                <span>Client</span>
+                        </label>
+
+                        <label>Numele tău </label>
+                        <input type="text"
+                            required value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </>
+                }
+                
+                
+                
                 <label> Email </label>
                 <input type="text"
                     autoFocus required value={email}
@@ -42,7 +68,6 @@ const Login = (props) => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
 
-                        <p className="errorMsg"> {passwordError}</p>
                     </>
                 }
                 <div className="btnContainer">
