@@ -200,16 +200,37 @@ button {
     position: fixed;
     top: 78px;
     right: 0;
-    padding: 60px;
-    margin: auto;
+    padding: 25px;
     width: 30%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
+
+.accountContainer label {
+    color: white;
+    margin: 14px 0;
+    display: block;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.accountContainer label p {
+    color: yellow;
+    font-weight: 500;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all 400ms ease-in-out;
+}
+
+.accountContainer label p:hover {
+    letter-spacing: 0.5px;
+    color: red;
+}
+
 
 .feed {
     overflow-y: scroll;
@@ -268,4 +289,71 @@ button {
     display: block;
     font-size: 22px;
     line-height: 1;
+}
+
+.createBox {
+    z-index: 1;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 60px;
+    margin: auto;
+    width: 100%;
+    max-width: 520px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+
+.createBox #close {
+    position: inherit;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: right;
+    color: yellow;
+    float: right;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 5px;
+    padding:2px 5px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.createBox #close:hover {
+    float: right;
+    cursor: pointer;
+    float: right;
+    padding:2px 5px;
+    background:rgb(2, 54, 47);
+    color:#fff;
+}
+
+.createBox input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.createBox #description {
+    width: 100%;
+    height: 200px;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    letter-spacing: 1px;
 }

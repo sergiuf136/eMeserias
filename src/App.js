@@ -69,9 +69,6 @@ function App() {
 
 
         }
-
-        
-        /**/
       )
       .catch(err => {
         switch (err.code) {
@@ -85,8 +82,6 @@ function App() {
           default:
         }
       });
-    
-    
   }
 
   const handleSubmit = () => {
