@@ -22,7 +22,7 @@ const Hero = ({ handleLogout, showAuth, setShowAuth, user }) => {
             snap.forEach(child => {
                 p.push(child.val());
             });
-            console.log(p);
+            //console.log(p);
             if(!props){
                 setProps(p);
             };

@@ -45,12 +45,6 @@ const Account = (user) => {
 
         setCreateBox(!createBox);
 
-        // let crtIdAux = 
-        // let numberAux = ;
-
-        
-    
-            //console.log("aici");
     }
 
     if (user && fire.auth().currentUser){
