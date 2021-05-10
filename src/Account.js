@@ -7,6 +7,7 @@ const Account = (user) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     // const [counts, setCounts] = useState({crtId: 0, number: 0});
+    const [name, setName] = useState('');
 
     // de afisat anunturi
     // de verificat dupa ce creez cont dc apare contul vechi in dreapta
@@ -33,10 +34,14 @@ const Account = (user) => {
                         })
                 .then(
                     () => {
+                        var current = new Date();
+                        console.log(current.toLocaleString());
                         fire.database().ref('posts/' + p[0].crtId).set({
                             title: title,
                             description: description,
-                            userId: userId
+                            userId: userId,
+                            name: name,
+                            posttime: current.toLocaleString(),
                         })
                     }
                 )
@@ -44,10 +49,13 @@ const Account = (user) => {
         )
 
         setCreateBox(!createBox);
+        setTimeout(function () {
+            window.location.reload(true);
+        }, 1000);
 
     }
 
-    if (user && fire.auth().currentUser){
+    if (user && fire.auth().currentUser) {
         const userId = fire.auth().currentUser.uid;
         fire.database().ref('/users/' + userId).once('value', snap => {
             let p = [];
@@ -55,9 +63,10 @@ const Account = (user) => {
                 p.push(child.val());
             });
             //console.log(p);
-            if(!props){
+            if(!props)
                 setProps(p);
-            };
+            if(!name)
+                setName(p[2]);
         });
         return (
             <>

@@ -14,7 +14,7 @@ function App() {
   const [passwordError, setPasswordError] = useState('');
   const [hasAccount, setHasAccount] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
-  const [showAuth, setShowAuth] = useState(true);
+  const [showAuth, setShowAuth] = useState(false);
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
 
@@ -49,6 +49,9 @@ function App() {
 
         }
       });
+      setTimeout(function () {
+        window.location.reload(true);
+      }, 1000);
   }
 
   const handleSignup = () => {
@@ -82,6 +85,7 @@ function App() {
           default:
         }
       });
+      
   }
 
   const handleSubmit = () => {
@@ -91,6 +95,9 @@ function App() {
     } else {
       // make API call
       handleSignup();
+      setTimeout(function () {
+        window.location.reload(true);
+    }, 1000);
     }
   }
 

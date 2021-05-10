@@ -26,7 +26,10 @@ const Feed = (user) => {
             //console.log(p[0]);
         });
         console.log(props.length)
+        p.reverse();
         if(props.length === 0)setProps(p);
+    }).then(() => {
+        
     })
 
     console.log(props);
@@ -34,12 +37,15 @@ const Feed = (user) => {
     for(let i = 0; i < props.length; i++) {
        // console.log(p[i].description);
         objs.push(
-            <div className="feedContainer">
-            <label>
-                {props[i].title}
-            </label>
-            {props[i].description}
-        </div>
+            <div className="feedContainer" key={i}>
+                <label>
+                    {props[i].title}
+                </label>
+                <label className="meta">
+                {props[i].description}<br/><br/>
+                Postat de: <text id="author">{props[i].name}</text> la data de: {props[i].posttime}.
+                </label>
+            </div>
         );
     }
 
@@ -50,6 +56,7 @@ const Feed = (user) => {
 
     return (
         <div className="feed">
+            Vezi cele mai noi anunțuri!
             {objs}
         </div>
     )

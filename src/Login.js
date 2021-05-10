@@ -30,7 +30,6 @@ const Login = (props) => {
                 <span id='close' onClick={() => setShowAuth(!showAuth)} >închide fereastra</span>
                 {!hasAccount &&
                     <>
-                        <label>Vrei să fii...</label>
                         <label>
                             <input type="radio" name="tipCont" value="meserias"
                                 onClick={(e) => setJob(e.target.value)}/>

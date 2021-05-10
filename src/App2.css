@@ -208,7 +208,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: top;
-    background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
+    background: radial-gradient( ellipse at right bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
 
@@ -235,6 +235,8 @@ button {
 
 
 .feed {
+    color:#013024;
+    font-size: 22px;
     overflow: auto;
     position: fixed;
     top: 10%;
@@ -243,8 +245,8 @@ button {
     height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    background: radial-gradient( ellipse at right top, rgb(39, 38, 54) 0%, rgb(159, 226, 177) 48%, rgb(255, 255, 255) 100%);
+    justify-content: flex-start;
+    background: radial-gradient( ellipse at left bottom, #F9F871 0%, rgb(159, 226, 177) 75%, rgb(255, 255, 255) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
 
@@ -261,15 +263,35 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgb(143, 192, 173);
+    background: linear-gradient(90deg, rgba(53,96,68,1) 0%, rgb(104, 170, 143) 43%, rgb(216, 231, 156) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
 
 .feed .feedContainer label {
-    color: rgb(95, 0, 184);
+    color:#F9F871;
     margin: 14px 0;
     display: block;
     font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.feed .feedContainer .meta {
+    color: rgb(255, 255, 255);
+    margin: 14px 0;
+    display: block;
+    font-size: 15px;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.feed .feedContainer .meta #author:hover{
+    color: #F9F871;
+    margin: 14px 0;
+    display: block;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+    font-weight: 200;
     line-height: 1;
 }
 
