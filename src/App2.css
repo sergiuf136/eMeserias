@@ -285,16 +285,6 @@ button {
     line-height: 1;
 }
 
-.feed .feedContainer .meta #author:hover{
-    color: #F9F871;
-    margin: 14px 0;
-    display: block;
-    letter-spacing: 0.3px;
-    font-size: 15px;
-    font-weight: 200;
-    line-height: 1;
-}
-
 .createBox {
     z-index: 1;
     position: fixed;

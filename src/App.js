@@ -33,7 +33,11 @@ function App() {
     clearErrors();
     fire
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password).then(() =>{
+        setTimeout(function () {
+          window.location.reload(true);
+        }, 1000);
+      })
       .catch(err => {
         switch (err.code) {
           case "auth/invalid-email":
@@ -49,9 +53,7 @@ function App() {
 
         }
       });
-      setTimeout(function () {
-        window.location.reload(true);
-      }, 1000);
+      
   }
 
   const handleSignup = () => {
@@ -68,9 +70,9 @@ function App() {
             job: job
           })
 
-          console.log("aici");
-
-
+          setTimeout(function () {
+            window.location.reload(true);
+          }, 1000);
         }
       )
       .catch(err => {
@@ -92,12 +94,11 @@ function App() {
     // perform all neccassary validations
     if (password !== confirmPassword) {
       alert("Parolele nu se potrivesc!");
+    } else if (name == '') {
+      alert("Ai uitat să completezi numele");
     } else {
       // make API call
       handleSignup();
-      setTimeout(function () {
-        window.location.reload(true);
-    }, 1000);
     }
   }
 

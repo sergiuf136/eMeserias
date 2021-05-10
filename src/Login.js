@@ -32,11 +32,11 @@ const Login = (props) => {
                     <>
                         <label>
                             <input type="radio" name="tipCont" value="meserias"
-                                onClick={(e) => setJob(e.target.value)}/>
+                                onClick={(e) => setJob(e.target.value)} />
                                 <span>Meseriaș</span>
 
                             <input type="radio" name="tipCont" value="client"
-                                onClick={(e) => setJob(e.target.value)}/>
+                                onClick={(e) => setJob(e.target.value)} defaultChecked/>
                                 <span>Client</span>
                         </label>
 
