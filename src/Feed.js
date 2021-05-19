@@ -5,18 +5,18 @@ const Feed = (user) => {
     const [props, setProps] = useState([]);
 
 
-    const plm = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident";
+    //const plm = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident";
     //const link = "https://www.youtube.com/watch?v=euICzfQGAA8";
     const objs = [];
 
-    const obj = (
+    /*const obj = (
         <div className="feedContainer">
             <label>
                 <a href="https://www.youtube.com/watch?v=euICzfQGAA8">Pisica care spune pula pula?!</a>
             </label>
             {plm}
         </div>
-    )
+    )*/
 
     let p = []
     fire.database().ref('/posts').once('value', snap => {

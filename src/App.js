@@ -5,6 +5,7 @@ import Login from './Login';
 import Hero from './Hero';
 import Feed from './Feed';
 import Account from './Account';
+import MyFeed from './MyFeed';
 
 function App() {
   const [user, setUser] = useState('');
@@ -17,6 +18,7 @@ function App() {
   const [showAuth, setShowAuth] = useState(false);
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
+  const [myFeed, setMyFeed] = useState(false);
 
   const clearInputs = () => {
     setEmail('');
@@ -94,7 +96,7 @@ function App() {
     // perform all neccassary validations
     if (password !== confirmPassword) {
       alert("Parolele nu se potrivesc!");
-    } else if (name == '') {
+    } else if (name === '') {
       alert("Ai uitat să completezi numele");
     } else {
       // make API call
@@ -158,8 +160,11 @@ function App() {
         />
         </>
       )} 
-        <Feed user={user}/>
-        <Account user={user}/>
+        {myFeed && user ? <MyFeed user={user}/> : <Feed user={user}/>}
+        <Account user={user}
+          myFeed={myFeed}
+          setMyFeed={setMyFeed}
+        />
       </div>
     );
 }

@@ -276,6 +276,29 @@ button {
     line-height: 1;
 }
 
+.feed .feedContainer .deleteBtn {
+    text-decoration: underline;
+    position: relative;
+    right: inherit;
+    margin-top: -17px;
+    margin-right: -10px;
+    text-align: right;
+    color: rgb(2, 49, 35);
+    font-size: 14px;
+    float: right;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 0px;
+    padding:2px 5px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.feed .feedContainer .deleteBtn:hover{
+    color: rgb(167, 0, 0);
+    font-weight: 800;
+}
+
 .feed .feedContainer .meta {
     color: rgb(255, 255, 255);
     margin: 14px 0;
@@ -284,6 +307,43 @@ button {
     font-weight: 200;
     line-height: 1;
 }
+
+.deleteBox {
+    font-size: 20px;
+    font-weight: 600;
+    color:rgb(216, 231, 156);
+    z-index: 1;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 60px;
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+
+.deleteBox button{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: -10px;
+    margin-top: 30px;
+    max-width: 100px;
+}
+
+.deleteBox button:hover{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: -10px;
+    margin-top: 30px;
+    max-width: 100px;
+    background-color:#013024;
+}
+
 
 .createBox {
     z-index: 1;
@@ -302,6 +362,7 @@ button {
     background: radial-gradient( ellipse at left bottom, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
+
 
 .createBox #close {
     position: inherit;

@@ -1,21 +1,28 @@
 import React, {useState} from 'react';
 import fire from './fire.js';
 
-const Account = (user) => {
+const Account = (args) => {
+    const {
+        user,
+        myFeed,
+        setMyFeed
+        } = args;
+
     const [props, setProps] = useState('');
     const [createBox, setCreateBox] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     // const [counts, setCounts] = useState({crtId: 0, number: 0});
     const [name, setName] = useState('');
+    const [job, setJob] = useState('');
 
     // de afisat anunturi
     // de verificat dupa ce creez cont dc apare contul vechi in dreapta
 
+
     async function handlePost() {
 
         const userId = fire.auth().currentUser.uid;
-
         
         let p = [];
         
@@ -41,6 +48,7 @@ const Account = (user) => {
                             description: description,
                             userId: userId,
                             name: name,
+                            job: job,
                             posttime: current.toLocaleString(),
                         })
                     }
@@ -62,11 +70,14 @@ const Account = (user) => {
             snap.forEach(child => {
                 p.push(child.val());
             });
-            //console.log(p);
+            console.log(p);
             if(!props)
                 setProps(p);
+            if(!job)
+                setJob(p[1]);
             if(!name)
                 setName(p[2]);
+            
         });
         return (
             <>
@@ -90,7 +101,7 @@ const Account = (user) => {
                             <>
                                 <button onClick={handlePost} > Postează </button>
                             </>
-                </div>
+                            </div>
                         </div>
                     }
                 </>
@@ -98,7 +109,7 @@ const Account = (user) => {
                     <label>Nume cont: {props[2]}</label>
                     <label>Tip cont: {props[1]}</label>
                     <label><p id="create" onClick={() => setCreateBox(!createBox)}> Creează anunț!</p></label>
-                    
+                    <label><p id="create" onClick={() => setMyFeed(!myFeed)}> Anunțurile mele...</p></label>
                 </div>
             </>
             
