@@ -6,18 +6,19 @@ const MyFeed = (user) => {
     const userId = fire.auth().currentUser.uid;
     const [edit, setEdit] = useState(false);
     const [del, setDel] = useState(false);
-    const [createBox, setCreateBox] = useState(false);
+    // const [createBox, setCreateBox] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const objs = [];
 
     /*
         TODO:
-        - nr de telefon (legat de fiecare anunt, nou camp)
-        - afisare nr de tel pe pagina anunt
-        - cereri (trimitere/primire/acceptare/refuz)
-        - nou field in database sub id user:
-                - cerere
+        - cereri (acceptare/refuz)
+            - cereri pending (trimitere in contul propriu id anunt)
+            (optional) sa nu poata trimite de 2 ori
+            - stergere la refuz + notificare client refuzat (status: pending/accept/refuz)
+            (istoric)
+        - editare nr tel
     */
 
     let p = []
@@ -93,6 +94,7 @@ const MyFeed = (user) => {
                     {props[i].description}<br/><br/>
                     Postat de: <text id="author">{props[i].name}</text> la data de: {props[i].posttime}.
                     </label>
+                    <label id="phone">contact: {props[i].telno}</label>
                     <button onClick={() => {editButton(i)}} > Editează Anunț </button>
                 </div>
             );

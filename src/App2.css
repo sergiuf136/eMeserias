@@ -276,6 +276,24 @@ button {
     line-height: 1;
 }
 
+.feed .feedContainer #phone {
+    color:#F9F871;
+    margin: 14px 0;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.feed .feedContainer .price {
+    color:rgba(89, 0, 255, 0.541);
+    margin: 14px 0;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
 .feed .feedContainer .deleteBtn {
     text-decoration: underline;
     position: relative;

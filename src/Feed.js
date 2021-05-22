@@ -1,64 +1,145 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import fire from './fire';
 
 const Feed = (user) => {
     const [props, setProps] = useState([]);
-
-
-    //const plm = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident";
-    //const link = "https://www.youtube.com/watch?v=euICzfQGAA8";
+    const [job, setJob] = useState('unauth');
+    const [createOffer, setCreateOffer] = useState(false);
+    const [price, setPrice] = useState('0');
+    const [description, setDescription] = useState('');
+    const [telno, setTelno] = useState('');
+    const [name, setName] = useState('');
     const objs = [];
 
-    /*const obj = (
-        <div className="feedContainer">
-            <label>
-                <a href="https://www.youtube.com/watch?v=euICzfQGAA8">Pisica care spune pula pula?!</a>
-            </label>
-            {plm}
-        </div>
-    )*/
+    if (user && fire.auth().currentUser) {
+        const userId = fire.auth().currentUser.uid;
+        fire.database().ref('/users/' + userId).once('value', snap => {
+            let p = [];
+            snap.forEach(child => {
+                if(child.key !== "incomingOffers")
+                    p.push(child.val());
+                console.log(child.key);
+            });
+            
+            if (job === 'unauth')
+                setJob(p[1]);
+            if (!name)
+                setName(p[2]);
+
+        });
+    }
+
+    console.log(name);
 
     let p = []
     fire.database().ref('/posts').once('value', snap => {
         snap.forEach(child => {
-            p.push(child.val());
-            //console.log(child.val());
-            //console.log(p[0]);
+            p.unshift(child.val());
+            p[0].key = child.key;
         });
         console.log(props.length)
-        p.reverse();
-        if(props.length === 0)setProps(p);
+        if (props.length === 0) setProps(p);
     }).then(() => {
-        
+
     })
 
     console.log(props);
 
-    for(let i = 0; i < props.length; i++) {
-       // console.log(p[i].description);
+
+    async function handleOffer() {
+
+        const userId = fire.auth().currentUser.uid;
+
+        var current = new Date();
+        console.log(current.toLocaleString());
+        fire.database().ref('users/' + props[createOffer].userId + '/incomingOffers/' + props[createOffer].key + '/' + userId ).set({
+            price: price,
+            description: description,
+            userId: userId,
+            name: name,
+            job: job,
+            telno: telno,
+            posttime: current.toLocaleString(),
+            title: props[createOffer].title,
+            seen: 0
+        })
+
+        setCreateOffer(false);
+
+        setTimeout(function () {
+            window.location.reload(true);
+        }, 1000);
+
+    }
+
+
+    for (let i = 0; i < props.length; i++) {
         objs.push(
             <div className="feedContainer" key={i}>
                 <label>
                     {props[i].title}
                 </label>
                 <label className="meta">
-                {props[i].description}<br/><br/>
+                    {props[i].description}<br /><br />
                 Postat de: <text id="author">{props[i].name}</text> la data de: {props[i].posttime}.
+                <label id="phone">contact: {props[i].telno}</label>
+                    {
+                        props[i].job !== job && job !== 'unauth' &&
+                        <button onClick={() => { setCreateOffer(i) }} > Trimite o ofertă! </button>
+                    }
                 </label>
             </div>
         );
     }
 
-    // objs.push(obj);
-    // objs.push(obj);
-    // objs.push(obj);
-
 
     return (
-        <div className="feed">
-            Vezi cele mai noi anunțuri!
+        <>
+            <div className="feed">
+                Vezi cele mai noi anunțuri!
             {objs}
-        </div>
+            </div>
+            <>
+                {
+                    createOffer !== false &&
+                    <div className="createBox">
+                        Creează ofertă
+                        <label> Telefon: </label>
+                        <input type="tel" id="phone" name="phone"
+                            pattern="[0-9]{10}"
+                            autoFocus required value={telno}
+                            onChange={(e) => setTelno(e.target.value)} />
+                        <small>Format: 10 cifre legate</small><br></br>
+                        <label>Preț </label>
+                        <input type="text"
+                            autoFocus required value={price}
+                            onChange={(e) => setPrice(e.target.value)} />
+                        <label> Detalii oferta</label>
+                        <textarea
+                            id="description"
+                            autoFocus required value={description}
+                            placeholder="Ai ceva de adăugat?"
+                            onChange={(e) => setDescription(e.target.value)} />
+
+                        <span id='close' onClick={() => setCreateOffer(false)} >închide fereastra</span>
+                        <div className="btnContainer">
+                            <>
+                                <button onClick={() => {
+                                    var phoneno = /0[0-9]{9}|0[0-9]{3} [0-9]{3} [0-9]{3}|\(\+[0-9]{2}\)[0-9]{9}|\(\+[0-9]{2}\) [0-9]{3} [0-9]{3} [0-9]{3}|\(\+[0-9]{2}\)[0-9]{3} [0-9]{3} [0-9]{3}/gm
+
+                                    if (telno.match(phoneno)) {
+                                        handleOffer();
+                                    }
+                                    else {
+                                        alert("Numarul de telefon nu este valid!");
+                                    }
+                                }} > Trimite! </button>
+                            </>
+                        </div>
+                    </div>
+                }
+            </>
+        </>
     )
 
 }

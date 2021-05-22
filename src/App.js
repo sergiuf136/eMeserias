@@ -6,6 +6,7 @@ import Hero from './Hero';
 import Feed from './Feed';
 import Account from './Account';
 import MyFeed from './MyFeed';
+import OffersFeed from './OffersFeed';
 
 function App() {
   const [user, setUser] = useState('');
@@ -17,7 +18,7 @@ function App() {
   const [confirmPassword, setConfirmPassword] = useState();
   const [showAuth, setShowAuth] = useState(false);
   const [name, setName] = useState('');
-  const [job, setJob] = useState('');
+  const [job, setJob] = useState('client');
   const [myFeed, setMyFeed] = useState(false);
 
   const clearInputs = () => {
@@ -35,7 +36,7 @@ function App() {
     clearErrors();
     fire
       .auth()
-      .signInWithEmailAndPassword(email, password).then(() =>{
+      .signInWithEmailAndPassword(email, password).then(() => {
         setTimeout(function () {
           window.location.reload(true);
         }, 1000);
@@ -55,7 +56,7 @@ function App() {
 
         }
       });
-      
+
   }
 
   const handleSignup = () => {
@@ -89,7 +90,7 @@ function App() {
           default:
         }
       });
-      
+
   }
 
   const handleSubmit = () => {
@@ -106,6 +107,10 @@ function App() {
 
   const handleLogout = () => {
     fire.auth().signOut();
+
+    setTimeout(function () {
+      window.location.reload(true);
+    }, 1000);
   }
 
   const authListener = () => {
@@ -124,20 +129,20 @@ function App() {
     authListener();
   });
 
-  
+
   //console.log(user);
 
   return (
-    <div className="App"> 
+    <div className="App">
       {user ? (<
         Hero handleLogout={handleLogout}
       />
-      ) : ( <>
+      ) : (<>
         <Hero handleLogout={handleLogout}
-        showAuth={showAuth}
-        setShowAuth={setShowAuth}
-        user={user}
-        />  
+          showAuth={showAuth}
+          setShowAuth={setShowAuth}
+          user={user}
+        />
         <Login email={email}
           setEmail={setEmail}
           password={password}
@@ -158,15 +163,20 @@ function App() {
           job={job}
           setJob={setJob}
         />
-        </>
-      )} 
-        {myFeed && user ? <MyFeed user={user}/> : <Feed user={user}/>}
-        <Account user={user}
-          myFeed={myFeed}
-          setMyFeed={setMyFeed}
-        />
-      </div>
-    );
+      </>
+        )}
+      {myFeed === 'myfeed' && user ? 
+        <MyFeed user={user}/> : 
+        (myFeed === 'incomingOffers' && user ? 
+          <OffersFeed user={user}/> : 
+          <Feed user={user} />)}
+
+      <Account user={user}
+        myFeed={myFeed}
+        setMyFeed={setMyFeed}
+      />
+    </div>
+  );
 }
 
 export default App;

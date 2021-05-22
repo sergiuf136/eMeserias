@@ -20,7 +20,8 @@ const Hero = ({ handleLogout, showAuth, setShowAuth, user }) => {
         fire.database().ref('/users/' + userId).once('value', snap => {
             let p = [];
             snap.forEach(child => {
-                p.push(child.val());
+                if(child.key !== "incomingOffers")
+                    p.push(child.val());
             });
             //console.log(p);
             if(!props){
@@ -28,10 +29,16 @@ const Hero = ({ handleLogout, showAuth, setShowAuth, user }) => {
             };
         });
 
+        function refreshPage () {
+            setTimeout(function () {
+                window.location.reload(true);
+                }, 0);
+        }
+
         return (
             <section className="hero">
                 <nav>
-                    <h2><img src="icon2.png" alt="eMeserias Logo" width="30" height="30" />eMeseriaș</h2>
+                    <h2><img src="icon2.png" alt="eMeserias Logo" width="30" height="30" onClick={refreshPage}/>eMeseriaș</h2>
                     <h2>Salut, {props[1]} {props[2]}</h2>
 
                     <button onClick={handleLogout}>Logout</button>
