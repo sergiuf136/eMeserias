@@ -16,7 +16,8 @@ const Feed = (user) => {
         fire.database().ref('/users/' + userId).once('value', snap => {
             let p = [];
             snap.forEach(child => {
-                if(child.key !== "incomingOffers")
+                if(child.key !== "incomingOffers" && 
+                    child.key !== "pendingOffers")
                     p.push(child.val());
                 console.log(child.key);
             });
@@ -61,7 +62,17 @@ const Feed = (user) => {
             telno: telno,
             posttime: current.toLocaleString(),
             title: props[createOffer].title,
-            seen: 0
+            status: 'pending'
+        })
+
+        fire.database().ref('users/' + userId + '/pendingOffers/' + props[createOffer].key + '/' + props[createOffer].userId).set({
+            price: price,
+            description: description,
+            userId: props[createOffer].userId,
+            telno: props[createOffer].telno,
+            posttime: current.toLocaleString(),
+            title: props[createOffer].title,
+            status: 'pending'
         })
 
         setCreateOffer(false);

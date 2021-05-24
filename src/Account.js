@@ -71,7 +71,8 @@ const Account = (args) => {
         fire.database().ref('/users/' + userId).once('value', snap => {
             let p = [];
             snap.forEach(child => {
-                if(child.key !== "incomingOffers")
+                if(child.key !== "incomingOffers" && 
+                    child.key !== "pendingOffers")
                     p.push(child.val());
             });
             console.log(p);
@@ -130,6 +131,7 @@ const Account = (args) => {
                     <label><p id="create" onClick={() => setCreateBox(!createBox)}> Creează anunț!</p></label>
                     <label><p id="create" onClick={() => setMyFeed('myfeed')}> Anunțurile mele...</p></label>
                     <label><p id="create" onClick={() => setMyFeed('incomingOffers')}> Oferte primite...</p></label>
+                    <label><p id="create" onClick={() => setMyFeed('pendingOffers')}> Oferte trimise...</p></label>
                 </div>
             </>
 

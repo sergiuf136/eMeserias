@@ -7,6 +7,7 @@ import Feed from './Feed';
 import Account from './Account';
 import MyFeed from './MyFeed';
 import OffersFeed from './OffersFeed';
+import PendingFeed from './PendingFeed';
 
 function App() {
   const [user, setUser] = useState('');
@@ -168,8 +169,10 @@ function App() {
       {myFeed === 'myfeed' && user ? 
         <MyFeed user={user}/> : 
         (myFeed === 'incomingOffers' && user ? 
-          <OffersFeed user={user}/> : 
-          <Feed user={user} />)}
+          <OffersFeed user={user} myFeed={myFeed} setMyFeed={setMyFeed}/> :
+          (myFeed === 'pendingOffers' && user ? 
+            <PendingFeed user={user}/> : <Feed user={user} />) 
+          )}
 
       <Account user={user}
         myFeed={myFeed}

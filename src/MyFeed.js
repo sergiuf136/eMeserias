@@ -8,6 +8,7 @@ const MyFeed = (user) => {
     const [del, setDel] = useState(false);
     // const [createBox, setCreateBox] = useState(false);
     const [title, setTitle] = useState('');
+    const [telno, setTelno] = useState('');
     const [description, setDescription] = useState('');
     const objs = [];
 
@@ -19,6 +20,7 @@ const MyFeed = (user) => {
             - stergere la refuz + notificare client refuzat (status: pending/accept/refuz)
             (istoric)
         - editare nr tel
+        - delete incomingOffers cand stergi si postarea mama
     */
 
     let p = []
@@ -60,6 +62,7 @@ const MyFeed = (user) => {
                 userId: userId,
                 name: props[edit].name,
                 job: props[edit].job,
+                telno: telno,
                 posttime: current.toLocaleString(),
             }).then(refreshPage())
     }
@@ -69,6 +72,7 @@ const MyFeed = (user) => {
             setEdit(i);
         setTitle(props[i].title);
         setDescription(props[i].description);
+        setTelno(props[i].telno);
     }
 
     function deleteButton (index) {
@@ -121,9 +125,15 @@ const MyFeed = (user) => {
                         autoFocus required value={description}
                         placeholder="Recomandăm cât mai multe detalii"
                         onChange={(e) => setDescription(e.target.value)} />
+                    <label> Telefon: </label>
+                            <input type="tel" id="phone" name="phone"
+                                pattern="[0-9]{10}"
+                                autoFocus required value={telno}
+                                onChange={(e) => setTelno(e.target.value)} />
+                            <small>Format: 10 cifre legate</small><br></br>
 
                     <span id='close' onClick={() => {setEdit(false)}} >
-                                                                    închide fereastra</span>
+                        închide fereastra</span>
                     <div className="btnContainer">
                         <>
                             <button onClick={handleEdit} > Salvează </button>

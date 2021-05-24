@@ -22,7 +22,7 @@ button {
 }
 
 .button:hover {
-    background: #013024;
+    background: #012c21;
 }
 
 .login {
@@ -150,6 +150,16 @@ button {
     background: radial-gradient( ellipse at left bottom, rgb(2, 0, 36) 0%, rgba(9, 121, 41, 1) 48%, rgba(0, 212, 255, 1) 100%);
 }
 
+.hero .homepage {
+    display: flex;
+    justify-content: center;
+}
+
+.hero .homepage :hover{
+    cursor: pointer;
+    background-color: #70faa9da;
+}
+
 .hero #signUp{
     color: yellow;
     float: right;
@@ -246,6 +256,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     background: radial-gradient( ellipse at left bottom, #F9F871 0%, rgb(159, 226, 177) 75%, rgb(255, 255, 255) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
@@ -257,19 +268,45 @@ button {
     top: 80px;
     padding: 30px;
     margin: 10px;
-    width: 80%;
+    min-width: 350px;
+    width: 90%;
     max-width: 90%;
-    min-height: 300px;
+    min-height: 350px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     background: linear-gradient(90deg, rgba(53,96,68,1) 0%, rgb(104, 170, 143) 43%, rgb(216, 231, 156) 100%);
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
 
+.feed .feedContainer .btnContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+.feed .feedContainer .btnContainer button{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: -10px;
+    margin-top: 30px;
+    max-width: 100px;
+}
+
+.feed .feedContainer .btnContainer button:hover{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: -10px;
+    margin-top: 30px;
+    max-width: 100px;
+    background-color:#013024;
+}
+
 .feed .feedContainer label {
     color:#F9F871;
-    margin: 14px 0;
+    margin: 10px 0;
     display: block;
     font-size: 22px;
     font-weight: bold;
@@ -278,7 +315,7 @@ button {
 
 .feed .feedContainer #phone {
     color:#F9F871;
-    margin: 14px 0;
+    margin: 10px 0;
     display: block;
     font-size: 20px;
     font-weight: bold;
@@ -287,7 +324,7 @@ button {
 
 .feed .feedContainer .price {
     color:rgba(89, 0, 255, 0.541);
-    margin: 14px 0;
+    margin: 10px 0;
     display: block;
     font-size: 20px;
     font-weight: bold;
