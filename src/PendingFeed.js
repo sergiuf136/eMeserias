@@ -70,13 +70,21 @@ const PendingFeed = (user) => {
                         la data de: {offer.posttime}.
                     </label>
                     <label id="phone">contact: {offer.telno}</label>
-                    <label>Status: <>{offer.status}</></label>
-                    <div className="btnContainer">
-                        {offer.status === 'pending' && <button onClick={() => {setCancel(offer)}} > Anulează </button>} 
-                        {offer.status === 'Declined' && <button onClick={() => {setDel(offer)}} > Șterge </button>} 
-                        {offer.status === 'Accepted' && <button onClick={() => {setDel(offer)}} > Șterge </button>} 
-                        
-                    </div>
+                        {offer.status === 'pending' && 
+                        <>
+                            <label id="pending">Status: <>{offer.status}</></label>
+                            <button onClick={() => {setCancel(offer)}} > Anulează </button>
+                        </>} 
+                        {offer.status === 'Declined' && 
+                        <>
+                            <label id="Declined">Status: <>{offer.status}</></label>
+                            <button  onClick={() => {setDel(offer)}} > Șterge </button>
+                        </>} 
+                        {offer.status === 'Accepted' && 
+                        <>
+                            <label id="Accepted">Status: <>{offer.status}</></label>
+                            <button  onClick={() => {setDel(offer)}} > Șterge </button>
+                        </>} 
                     
                 </div>
             );

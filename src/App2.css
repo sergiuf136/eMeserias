@@ -331,6 +331,33 @@ button {
     line-height: 1;
 }
 
+.feed .feedContainer #pending {
+    color:rgba(89, 0, 255, 0.541);
+    margin: 10px 0;
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.feed .feedContainer #Accepted {
+    color:rgba(43, 255, 0, 0.753);
+    margin: 10px 0;
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.feed .feedContainer #Declined {
+    color:rgba(185, 0, 0, 0.76);
+    margin: 10px 0;
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+}
+
 .feed .feedContainer .deleteBtn {
     text-decoration: underline;
     position: relative;

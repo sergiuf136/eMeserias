@@ -52,6 +52,7 @@ const OffersFeed = (props) => {
             price: offer.price,
             description: offer.description,
             userId: offer.userId,
+            name: offer.name,
             telno: offer.telno,
             posttime: offer.posttime,
             title: offer.title,
