@@ -116,17 +116,17 @@ const OffersFeed = (props) => {
                     Primit de la: <text id="author">{offer.name}</text> <br />la data de: {offer.posttime}.
                     </label>
                     <label id="phone">contact: {offer.telno}</label>
-                    <div className="btnContainer">
+                    
                         {offer.status === 'pending' ?
-                            <>
+                            <div className="btnContainer">
                                 <button onClick={() => { handleAccept(offer) }} > Acceptă </button>
                                 <button onClick={() => { handleDecline(offer) }} > Refuză </button>
-                            </> : (
-                                offer.status === 'Accepted' &&
-                                <button onClick={() => { setDelOffer(offer) }} > Șterge </button>
+                            </div> : (
+                                offer.status === 'Accepted' && <>Oferta a fost acceptată</>
+                                //<button onClick={() => { setDelOffer(offer) }} > Șterge </button>
                             )
                         }
-                    </div>
+                    
                 </div>
             );
         }

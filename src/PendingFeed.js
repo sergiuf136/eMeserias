@@ -83,8 +83,10 @@ const PendingFeed = (user) => {
                         {offer.status === 'Accepted' && 
                         <>
                             <label id="Accepted">Status: <>{offer.status}</></label>
-                            <button  onClick={() => {setDel(offer)}} > Șterge </button>
-                        </>} 
+                        </>
+                        // <button  onClick={() => {setDel(offer)}} > Șterge </button>
+                        
+                        } 
                     
                 </div>
             );
